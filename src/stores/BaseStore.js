@@ -1,6 +1,5 @@
 import * as axios from 'axios';
 
-
 export class BaseStore {
     httpClient = axios.create({
         headers: {

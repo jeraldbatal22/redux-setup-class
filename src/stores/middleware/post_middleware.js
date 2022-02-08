@@ -1,5 +1,5 @@
-import { receivePosts, supportPostActionConstants } from "../actions/post_actions";
-import { doFetchPosts } from "../services/post_services";
+import { clearPostsSuccess, clearUsersSuccess, receivePosts, receiveUsers, supportPostActionConstants } from "../actions/post_actions";
+import { doClearPosts, doClearUsers, doFetchPosts, doFetchUsers } from "../services/post_services";
 
 const PostMiddleware = ({ dispatch }) => next => action => {
   let success;
@@ -10,6 +10,27 @@ const PostMiddleware = ({ dispatch }) => next => action => {
           }
 
           return doFetchPosts(success);
+
+      case supportPostActionConstants.REQUEST_USERS:
+        success = users => {
+            dispatch(receiveUsers(users))
+        }
+
+        return doFetchUsers(success);
+
+      case supportPostActionConstants.CLEAR_POSTS:
+        success = () => {
+            dispatch(clearPostsSuccess())
+        }
+
+        return doClearPosts(success);
+
+      case supportPostActionConstants.CLEAR_USERS:
+        success = () => {
+            dispatch(clearUsersSuccess())
+        }
+
+        return doClearUsers(success);
 
           default:
             return next(action);
