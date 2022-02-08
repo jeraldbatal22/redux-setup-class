@@ -43,6 +43,7 @@ import { connect } from 'react-redux';
             <tr style={{ background: this.state.posts.length > 0 ? 'antiquewhite' : this.state.users.length > 0 ? 'aquamarine' : '' }}>
               <th>{this.state.posts.length > 0 ? 'UserId' : this.state.users.length > 0 ? 'Fullname' : ''}</th>
               <th>{this.state.posts.length > 0 ? 'Title' : this.state.users.length > 0 ? 'Email' : ''}</th>
+              <th>{this.state.posts.length > 0 ? 'Body' : this.state.users.length > 0 ? 'Phone No.' : ''}</th>
             </tr>
           </thead>
           <tbody>
@@ -51,6 +52,7 @@ import { connect } from 'react-redux';
                 <tr key={post.id} >
                     <td>{post.userId}</td>
                     <td>{post.title}</td>
+                    <td>{post.body}</td>
                 </tr>
               ))
             }
@@ -60,6 +62,7 @@ import { connect } from 'react-redux';
                 <tr key={post.id} >
                     <td>{post.name}</td>
                     <td>{post.email}</td>
+                    <td>{post.phone}</td>
                 </tr>
               ))
             }
