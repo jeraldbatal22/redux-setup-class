@@ -30,33 +30,42 @@ import { connect } from 'react-redux';
     return (
       <div className="App" style={{width:'50%', margin:'auto'}}>
         <br/>
-        <button onClick={this.getPosts}>GET POSTS</button><br></br><br></br>
-        <button onClick={this.getUsers}>GET USERS</button>
+        <button onClick={this.getPosts} className="btn_get_posts">GET POSTS</button><br></br><br></br>
+        <button onClick={this.getUsers} className="btn_get_users">GET USERS</button>
         <br/>
-        <br/>
-        {/* <pre>
-        {
-          JSON.stringify(this.props.posts)
-        }
-        </pre> */}
         <br/>
         <h1>{this.state.posts.length > 0 && 'POSTS LIST'} {this.state.users.length > 0 && 'USERS LIST'}</h1>
-        {
-            this.state.posts.length > 0 && this.state.posts.map(post => (
-              <ul key={post.id} style={{listStyle:'none', display:'flex', gap:'10px'}}>
-                  <li>{post.title}</li>
-                  <li>{post.userId}</li>
-              </ul>
-            ))
-          }
-          {
-            this.state.users.length > 0 && this.state.users.map(post => (
-              <ul key={post.id} style={{listStyle:'none', display:'flex'}}>
-                  <li>{post.name}</li>
-                  <li>{post.email}</li>
-              </ul>
-            ))
-          }
+
+        <br/>
+        
+        <table id="customers">
+          <thead>
+            <tr style={{ background: this.state.posts.length > 0 ? 'antiquewhite' : this.state.users.length > 0 ? 'aquamarine' : '' }}>
+              <th>{this.state.posts.length > 0 ? 'UserId' : this.state.users.length > 0 ? 'Fullname' : ''}</th>
+              <th>{this.state.posts.length > 0 ? 'Title' : this.state.users.length > 0 ? 'Email' : ''}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.posts.length > 0 && this.state.posts.map(post => (
+                <tr key={post.id} >
+                    <td>{post.userId}</td>
+                    <td>{post.title}</td>
+                </tr>
+              ))
+            }
+
+            {
+              this.state.users.length > 0 && this.state.users.map(post => (
+                <tr key={post.id} >
+                    <td>{post.name}</td>
+                    <td>{post.email}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      
       </div>
     )
   }
