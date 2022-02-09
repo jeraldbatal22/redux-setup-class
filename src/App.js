@@ -11,16 +11,20 @@ import { connect } from 'react-redux';
   }
 
   getPosts = () => {
-    this.props.clearUsers()
-    this.setState({users: []})
+    if(this.state.users.length > 0) {
+      this.props.clearUsers()
+      this.setState({users: []})
+    }
     this.props.requestPosts().then(() => {
       this.setState({posts: this.props.posts})
     })
   }
 
   getUsers = () => {
-    this.props.clearPosts()
-    this.setState({posts: []})
+    if(this.state.posts.length > 0) {
+      this.props.clearPosts()
+      this.setState({posts: []})
+    }
     this.props.requestUsers().then(() => {
       this.setState({users: this.props.users})
     })
